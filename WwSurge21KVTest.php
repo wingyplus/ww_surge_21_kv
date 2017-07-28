@@ -62,4 +62,13 @@ final class WwSurge21KvTest extends TestCase {
     $this->assertEquals(6, $lks[11]->beginning_inventory);
     $this->assertEquals(0, $lks[11]->ending_inventory);
   }
+
+  public function test_calculate_inventory_12months_calculate_average() {
+    $lks = calculate_inventory_12months($this->lk_12month);
+    $expected = [0, 816, 757, 678.5, 562, 633, 560.5, 434, 217, 202.5, 226, 3, 24];
+
+    for ($i = 1; $i < count($lks); $i++) {
+      $this->assertEquals($expected[$i], $lks[$i]->average_inventory);
+    }
+  }
 }
