@@ -2,7 +2,7 @@
 
 class Lk {
   public $demand;
-  public $quantiy;
+  public $quantity;
   public $beginning_inventory;
   public $ending_inventory;
   public $average_inventory;
