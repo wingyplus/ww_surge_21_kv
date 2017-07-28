@@ -24,7 +24,6 @@ class ZeroLk extends Lk {
   }
 }
 
-$lk_12month = [new ZeroLk(), new Lk(1632), new Lk(1514), new Lk(1357), new Lk(1124), new Lk(1266), new Lk(1121), new Lk(868), new Lk(434), new Lk(405), new Lk(452), new Lk(6), new Lk(48)];
 
 // calculate 12th month quantities from demands
 function calculate_quantities($lks, $from, $to) {
@@ -39,4 +38,8 @@ function calculate_quantities($lks, $from, $to) {
     $lks[$i]->quantity = 0;
   }
   return $lks;
+}
+
+function calculate_beginning_inventory($lk0, $lk1) {
+  return $lk0->ending_inventory + $lk1->quantity;
 }
