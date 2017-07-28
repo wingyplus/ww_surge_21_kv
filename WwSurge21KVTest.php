@@ -41,4 +41,25 @@ final class WwSurge21KvTest extends TestCase {
     $beginning_inventory = calculate_beginning_inventory($lks[0], $lks[1]);
     $this->assertEquals(1632, $beginning_inventory);
   }
+
+  public function test_calculate_inventory_12months_buy_equals_demand() {
+    $lks = calculate_inventory_12months($this->lk_12month);
+    foreach ($lks as $lk) {
+      $this->assertEquals(0, $lk->ending_inventory);
+    }
+  }
+
+  public function test_calculate_inventory_12months_have_ending_inventory_when_buy_more_than_demand() {
+    $lks = calculate_quantities($this->lk_12month, 1, 2);
+    $lks = calculate_inventory_12months($lks);
+    $this->assertEquals(3146, $lks[1]->beginning_inventory);
+    $this->assertEquals(1514, $lks[1]->ending_inventory);
+  }
+
+  public function test_calculate_inventory_12months_have_ending_inventory_when_buy_more_than_demand_2() {
+    $lks = calculate_quantities($this->lk_12month, 10, 11);
+    $lks = calculate_inventory_12months($lks);
+    $this->assertEquals(6, $lks[11]->beginning_inventory);
+    $this->assertEquals(0, $lks[11]->ending_inventory);
+  }
 }
