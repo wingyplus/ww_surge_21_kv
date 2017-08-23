@@ -3,6 +3,9 @@
 // refer to C in $R$21
 define('C', 1700);
 
+// refer to S in $R$19
+define('S', 148000 / 3 / 86);
+
 class Lk {
   public $demand;
   public $quantity;
@@ -10,6 +13,7 @@ class Lk {
   public $ending_inventory;
   public $average_inventory;
   public $round_holding_cost;
+  public $ordering_cost;
 
   function __construct($demand) {
     $this->demand = $demand;
@@ -19,6 +23,7 @@ class Lk {
     $this->ending_inventory = 0;
     $this->average_inventory = 0;
     $this->round_holding_cost = 0;
+    $this->ordering_cost = 0;
   }
 }
 
@@ -72,4 +77,13 @@ function calculate_round_holding_cost($lks) {
     $lk->round_holding_cost = round($lk->average_inventory * (0.2 / 12) * C, 2);
   }
   return $lks;
+}
+
+function calculate_ordering_cost($lks) {
+  for ($i = 1; $i < count($lks); $i++) {
+    $lk = $lks[$i];
+    if ($lk->quantity != 0) {
+      $lk->ordering_cost = S;
+    }
+  }
 }
