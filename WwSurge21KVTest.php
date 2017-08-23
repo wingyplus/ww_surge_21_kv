@@ -71,4 +71,11 @@ final class WwSurge21KvTest extends TestCase {
       $this->assertEquals($expected[$i], $lks[$i]->average_inventory);
     }
   }
+
+  public function test_calculate_round_holding_cost() {
+    calculate_inventory_12months($this->lk_12month);
+    calculate_round_holding_cost($this->lk_12month);
+    $this->assertEquals(23120, $this->lk_12month[1]->round_holding_cost);
+    $this->assertEquals(85, $this->lk_12month[11]->round_holding_cost);
+  }
 }

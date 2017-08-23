@@ -1,11 +1,15 @@
 <?php
 
+// refer to C in $R$21
+define('C', 1700);
+
 class Lk {
   public $demand;
   public $quantity;
   public $beginning_inventory;
   public $ending_inventory;
   public $average_inventory;
+  public $round_holding_cost;
 
   function __construct($demand) {
     $this->demand = $demand;
@@ -14,6 +18,7 @@ class Lk {
     $this->beginning_inventory = 0;
     $this->ending_inventory = 0;
     $this->average_inventory = 0;
+    $this->round_holding_cost = 0;
   }
 }
 
@@ -57,6 +62,14 @@ function calculate_inventory_12months($lks) {
     $lks[$i]->beginning_inventory = calculate_beginning_inventory($lks[$i - 1], $lks[$i]);
     $lks[$i]->ending_inventory = calculate_ending_inventory($lks[$i]);
     $lks[$i]->average_inventory = calculate_average_inventory($lks[$i]);
+  }
+  return $lks;
+}
+
+function calculate_round_holding_cost($lks) {
+  for ($i = 1; $i < count($lks); $i++) {
+    $lk = $lks[$i];
+    $lk->round_holding_cost = round($lk->average_inventory * (0.2 / 12) * C, 2);
   }
   return $lks;
 }
