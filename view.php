@@ -63,6 +63,24 @@
           }
           ?>
         </tr>
+        <tr>
+          <td>ค่าใช้จ่ายในการถือครอง</td>
+          <?php
+          require('./demand.php');
+          for ($month = 1; $month <= 12; $month++) {
+            echo sprintf('<td>%d</td>', $lk_12month[$month]->round_holding_cost);
+          }
+          ?>
+        </tr>
+        <tr>
+          <td>คค่าใช้จ่ายในการสั่ง (คงที่)</td>
+          <?php
+          require('./demand.php');
+          for ($month = 1; $month <= 12; $month++) {
+            echo sprintf('<td>%d</td>', $lk_12month[$month]->ordering_cost);
+          }
+          ?>
+        </tr>
       </tbody>
     </table>
   </body>
