@@ -99,9 +99,15 @@ class HighVoltageSurgeArrester {
   }
 
   public function calculate($i, $k) {
-    $lks = calculate_quantities($this->lk_12month, $i, $i);
+    $from = 1;
+    $lks = calculate_quantities($this->lk_12month, $from, $i);
     $lks = calculate_inventory_12months($lks);
 
-    return ceil(S + ($lks[$i]->average_inventory * H));
+    $sum_average_inventory = 0;
+    for ($j = 0; $j <= $i; $j++) {
+      $sum_average_inventory += $lks[$j]->average_inventory;
+    }
+
+    return ceil(S + ($sum_average_inventory * H));
   }
 }

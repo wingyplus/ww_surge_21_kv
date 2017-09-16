@@ -11,8 +11,13 @@ final class HighVoltageSurgeArrester21kVTest extends TestCase {
     $this->lk_12month = [new ZeroLk(), new Lk(1632), new Lk(1514), new Lk(1357), new Lk(1124), new Lk(1266), new Lk(1121), new Lk(868), new Lk(434), new Lk(405), new Lk(452), new Lk(6), new Lk(48)];
   }
 
-  public function test_calculate() {
+  public function test_calculate_first_month() {
     $hvsa = new HighVoltageSurgeArrester($this->lk_12month);
     $this->assertEquals(23694, $hvsa->calculate(1, 1));
+  }
+
+  public function test_calculate_second_month() {
+    $hvsa = new HighVoltageSurgeArrester($this->lk_12month);
+    $this->assertEquals(88039, $hvsa->calculate(2, 1));
   }
 }
