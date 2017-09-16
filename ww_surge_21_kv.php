@@ -6,6 +6,9 @@ define('C', 1700);
 // refer to S in $R$19
 define('S', 148000 / 3 / 86);
 
+// refer to H in $R$22
+define('H', C * (0.2 / 12));
+
 class Lk {
   public $demand;
   public $quantity;
@@ -85,5 +88,20 @@ function calculate_ordering_cost($lks) {
     if ($lk->quantity != 0) {
       $lk->ordering_cost = S;
     }
+  }
+}
+
+class HighVoltageSurgeArrester {
+  private $lk_12month;
+
+  public function __construct($lk_12month) {
+    $this->lk_12month = $lk_12month;
+  }
+
+  public function calculate($i, $k) {
+    $lks = calculate_quantities($this->lk_12month, $i, $i);
+    $lks = calculate_inventory_12months($lks);
+
+    return ceil(S + ($lks[$i]->average_inventory * H));
   }
 }
