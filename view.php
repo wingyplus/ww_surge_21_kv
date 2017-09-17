@@ -8,6 +8,34 @@
     <table>
       <thead>
         <tr>
+          <td>k/i</td>
+          <?php
+          for ($i = 1; $i <= 12; $i++) {
+            echo sprintf('<td>%d</td>', $i);
+          }
+          ?>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <?php
+          require('./lk_12month.php');
+
+          $k = 1;
+
+          for ($i = 1; $i <= 12; $i++) {
+            $hvsa = new HighVoltageSurgeArrester($lk_12month);
+            echo sprintf('<td>%d</td>', $hvsa->calculate($i, $k));
+          }
+          ?>
+        </tr>
+      </tbody>
+    </table>
+
+    <table>
+      <thead>
+        <tr>
           <td></td>
           <?php
           for ($i = 1; $i <= 12; $i++) {

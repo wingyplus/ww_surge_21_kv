@@ -20,4 +20,9 @@ final class HighVoltageSurgeArrester21kVTest extends TestCase {
     $hvsa = new HighVoltageSurgeArrester($this->lk_12month);
     $this->assertEquals(88039, $hvsa->calculate(2, 1));
   }
+
+  public function test_calculate_third_month() {
+    $hvsa = new HighVoltageSurgeArrester($this->lk_12month);
+    $this->assertEquals(184174, $hvsa->calculate(3, 1));
+  }
 }

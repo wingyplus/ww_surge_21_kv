@@ -69,7 +69,7 @@ function calculate_inventory_12months($lks) {
   for ($i = 1; $i < count($lks); $i++) {
     $lks[$i]->beginning_inventory = calculate_beginning_inventory($lks[$i - 1], $lks[$i]);
     $lks[$i]->ending_inventory = calculate_ending_inventory($lks[$i]);
-    $lks[$i]->average_inventory = calculate_average_inventory($lks[$i]);
+    $lks[$i]->average_inventory = ceil(calculate_average_inventory($lks[$i]));
   }
   return $lks;
 }
