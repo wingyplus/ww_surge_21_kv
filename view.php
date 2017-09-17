@@ -5,6 +5,7 @@
     <title>WW Surge 21 KV</title>
   </head>
   <body>
+    <h1>High Voltage Surge Arrester - 21kV</h1>
     <table>
       <thead>
         <tr>
@@ -33,6 +34,7 @@
       </tbody>
     </table>
 
+    <h1>Simu for lk</h1>
     <table>
       <thead>
         <tr>
@@ -45,7 +47,6 @@
         </tr>
       </thead>
       <tbody>
-        <h1>High Voltage Surge Arrester - 21kV</h1>
         <tr>
           <td>ความต้องการ</td>
           <?php
